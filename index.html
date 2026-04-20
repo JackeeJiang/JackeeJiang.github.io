@@ -21,37 +21,42 @@
 
         body {
             font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
-            background: #fafaf7;
-            color: #1a1a1a;
+            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            
+            /* 背景照片 */
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
-        /* subtle grain texture for depth */
+        /* 半透明渐变遮罩:中间最暗、边缘稍亮,突出中央文字 */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(0,0,0,0.015) 1px, transparent 1px),
-                radial-gradient(circle at 70% 80%, rgba(0,0,0,0.015) 1px, transparent 1px);
-            background-size: 40px 40px, 60px 60px;
+            background: 
+                radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.25) 100%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* horizontal accent lines */
+        /* 装饰短线 */
         .line-top, .line-bottom {
             position: fixed;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
             height: 1px;
-            background: #1a1a1a;
+            background: rgba(255, 255, 255, 0.85);
             opacity: 0;
             animation: lineGrow 1.2s ease-out 0.2s forwards;
+            z-index: 2;
         }
 
         .line-top { top: 15%; }
@@ -59,7 +64,7 @@
 
         @keyframes lineGrow {
             from { width: 0; opacity: 0; }
-            to { width: 60px; opacity: 1; }
+            to { width: 60px; opacity: 0.85; }
         }
 
         .container {
@@ -76,7 +81,9 @@
             font-size: clamp(2rem, 5.5vw, 4.5rem);
             letter-spacing: 0.01em;
             line-height: 1.2;
-            color: #0a0a0a;
+            color: #ffffff;
+            /* 文字阴影增强可读性 */
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
             opacity: 0;
             animation: fadeUp 1s ease-out 0.6s forwards;
             white-space: nowrap;
@@ -92,12 +99,14 @@
             font-size: 0.95rem;
             font-weight: 400;
             letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.92);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
             opacity: 0;
             animation: fadeUp 1s ease-out 0.9s forwards;
         }
 
         .meta a {
-            color: #1a1a1a;
+            color: rgba(255, 255, 255, 0.92);
             text-decoration: none;
             position: relative;
             padding-bottom: 2px;
@@ -123,11 +132,11 @@
         }
 
         .meta a:hover {
-            color: #000;
+            color: #ffffff;
         }
 
         .divider {
-            color: #bbb;
+            color: rgba(255, 255, 255, 0.5);
             font-weight: 300;
             user-select: none;
         }
@@ -143,7 +152,7 @@
             }
         }
 
-        /* responsive tweaks */
+        /* 响应式 */
         @media (max-width: 700px) {
             .name {
                 font-size: clamp(1.3rem, 6vw, 2.5rem);
@@ -155,6 +164,9 @@
             }
             .line-top { top: 10%; }
             .line-bottom { bottom: 10%; }
+            body {
+                background-attachment: scroll; /* 移动端不用 fixed,性能更好 */
+            }
         }
     </style>
 </head>
@@ -167,7 +179,7 @@
         <div class="meta">
             <a href="mailto:jjq1972556423@outlook.com">Contact Me</a>
             <span class="divider">·</span>
-            <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering" target="_blank" rel="noopener noreferrer">UNSW School of Computer Science and Engineering</a>
+            <a href="https://www.unsw.edu.au" target="_blank" rel="noopener noreferrer">UNSW</a>
         </div>
     </main>
 
