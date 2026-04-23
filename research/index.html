@@ -175,6 +175,75 @@
             font-style: italic;
         }
 
+        /* ===== 左上角返回首页(极简、低调) ===== */
+        .back-home {
+            position: fixed;
+            top: 10px;
+            left: 14px;
+            z-index: 101;
+            font-size: 0.74rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            color: rgba(30, 30, 30, 0.28);
+            padding: 3px 6px;
+            transition: color 0.25s ease;
+        }
+        .back-home:hover { color: rgba(30, 30, 30, 0.7); }
+
+        /* ===== 学历条目 ===== */
+        .edu-entry { margin-bottom: 1.6rem; }
+        .edu-entry:last-child { margin-bottom: 0; }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.35rem;
+        }
+        .edu-school {
+            font-weight: 700;
+            font-size: 1.02rem;
+        }
+        .edu-date {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .edu-line { margin-bottom: 0.3rem; }
+        .edu-line strong { font-weight: 700; }
+        .edu-line em {
+            font-style: italic;
+            color: var(--text-soft);
+        }
+
+        /* ===== 奖项 / 项目列表(共用样式) ===== */
+        .awards-list,
+        .project-list {
+            list-style: none;
+            padding: 0;
+        }
+        .awards-list li,
+        .project-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .awards-list li:last-child,
+        .project-list li:last-child { border-bottom: none; }
+        .award-date,
+        .project-lang {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .project-lang { font-style: italic; }
+
         /* ===== 响应式 ===== */
         @media (max-width: 900px) {
             .layout {
@@ -205,17 +274,18 @@
     </style>
 </head>
 <body>
+    <!-- 左上角返回首页(低调灰字) -->
+    <a class="back-home" href="../">← Back to Homepage</a>
+
     <!-- 顶部导航 -->
     <header class="site-nav">
         <div class="site-nav-inner">
-            <a class="brand-link" href="../">Jiaqi Jiang's Homepage</a>
             <nav>
                 <a href="#about-me">About Me</a>
                 <a href="#research-interest">Research Interest</a>
                 <a href="#current-work">Current Work</a>
                 <a href="#awards">Awards</a>
                 <a href="#project">Project</a>
-                <a href="#academic-result">Academic Result</a>
                 <a class="cv-link" href="cv.jpg" download="Jiaqi_Jiang_CV.jpg">Download my CV</a>
             </nav>
         </div>
@@ -252,33 +322,68 @@
         <main class="content">
             <section id="about-me">
                 <h2>About Me</h2>
-                <p class="placeholder">A short bio goes here — who you are, where you study, what drew you to research.</p>
+                <p>Hi — I'm Jiaqi Jiang (Jackee Martinez), an undergraduate at the School of Computer Science and Engineering, UNSW Sydney. I came to research through the problems that show up when systems scale: how algorithms hold together on graphs too large for a single machine, how decomposition exposes hidden structure, and how database systems quietly carry all of it.</p>
+                <p>I mostly code in C and C++, with JavaScript, Java, and SQL picked up along the way. Outside the terminal I'm usually reading about civil aviation or wandering through maps.</p>
             </section>
 
             <section id="research-interest">
                 <h2>Research Interest</h2>
-                <p class="placeholder">The topics and problems you care about.</p>
+                <p>My research interests center on large-scale graph and hypergraph data processing, with particular interests in graph decomposition, scalable graph algorithms, distributed and parallel graph computing, and database systems.</p>
             </section>
 
             <section id="current-work">
                 <h2>Current Work</h2>
-                <p class="placeholder">Projects, collaborations, and experiments underway.</p>
+                <p>Studying and reproducing recent work on billion-scale hypergraph core decomposition, with planned work on a distributed extension for large-scale hypergraph core decomposition.</p>
             </section>
 
             <section id="awards">
                 <h2>Awards</h2>
-                <p class="placeholder">Scholarships, prizes, and recognitions.</p>
+                <ul class="awards-list">
+                    <li>
+                        <span>2024 UNSWC Academic Scholarship Diploma</span>
+                        <span class="award-date">Aug 2024 – Aug 2025</span>
+                    </li>
+                    <li>
+                        <span>First Prize in National Youth Aeronautics Competition</span>
+                        <span class="award-date">Aug 2022</span>
+                    </li>
+                </ul>
             </section>
 
             <section id="project">
                 <h2>Project</h2>
-                <p class="placeholder">Course projects, side projects, and open-source contributions.</p>
+                <ul class="project-list">
+                    <li>
+                        <span>Astronaut Admin System</span>
+                        <span class="project-lang">JavaScript</span>
+                    </li>
+                    <li>
+                        <span>Sokoban game</span>
+                        <span class="project-lang">C</span>
+                    </li>
+                    <li>
+                        <span>Pet salon management system</span>
+                        <span class="project-lang">C</span>
+                    </li>
+                    <li>
+                        <span>Mset management algorithm</span>
+                        <span class="project-lang">C</span>
+                    </li>
+                    <li>
+                        <span>Rock-climbing pathfinding algorithm</span>
+                        <span class="project-lang">C</span>
+                    </li>
+                    <li>
+                        <span>Nonograms game</span>
+                        <span class="project-lang">MIPS assembly</span>
+                    </li>
+                    <li>
+                        <span>imps</span>
+                        <span class="project-lang">C</span>
+                    </li>
+                </ul>
             </section>
 
-            <section id="academic-result">
-                <h2>Academic Result</h2>
-                <p class="placeholder">Publications, papers, posters. List with co-authors, venue, and year.</p>
-            </section>
         </main>
     </div>
 </body>
