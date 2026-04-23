@@ -6,7 +6,7 @@
     <title>Jiaqi Jiang</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -171,10 +171,13 @@
         }
 
         .scene-photography .scene-title {
-            font-family: 'Playfair Display', 'Noto Serif', serif;
+            font-family: 'Pinyon Script', 'Playfair Display', cursive;
             font-weight: 400;
-            font-style: italic;
-            letter-spacing: 0.005em;
+            letter-spacing: 0.01em;
+            /* 花体字形较纤细,放大一档视觉分量才够 */
+            font-size: clamp(5rem, 17vw, 13rem);
+            line-height: 1.1;
+            padding-bottom: 0.15em; /* 预留下拉笔画的空间 */
         }
 
         .scene-hint {
@@ -191,6 +194,23 @@
             text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
             animation: hintPulse 2.6s ease-in-out infinite;
         }
+
+        /* Home 场景的上下方向提示:同一套字体,更小、更靠边 */
+        .home-hint {
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Noto Serif', 'Noto Serif SC', serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.6);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+            animation: hintPulse 2.6s ease-in-out infinite;
+        }
+        .home-hint-top    { top: 6%; }
+        .home-hint-bottom { bottom: 6%; }
 
         @keyframes hintPulse {
             0%, 100% { opacity: 0.55; }
@@ -227,6 +247,7 @@
 <body>
     <!-- Home(默认场景) -->
     <section class="scene scene-home active" data-scene="0">
+        <p class="home-hint home-hint-top">Scroll Up for Research Page</p>
         <div class="line-top"></div>
         <div class="container">
             <h1 class="name">Jiaqi Jiang&nbsp;(Jackee Martinez)</h1>
@@ -237,6 +258,7 @@
             </div>
         </div>
         <div class="line-bottom"></div>
+        <p class="home-hint home-hint-bottom">Scroll Down for Photography Page</p>
     </section>
 
     <!-- Research(滚轮上滑) -->
