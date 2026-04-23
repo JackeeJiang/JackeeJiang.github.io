@@ -125,35 +125,70 @@
         }
 
         .gear-wrap {
-            max-width: 820px;
+            max-width: 760px;
             margin: 0 auto;
         }
         .gear-eyebrow {
-            font-family: 'Noto Serif', serif;
-            font-style: italic;
-            font-size: 0.82rem;
-            letter-spacing: 0.3em;
+            font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.32em;
             text-transform: uppercase;
             color: rgba(255,255,255,0.65);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
         }
         .gear-title {
-            font-family: 'Pinyon Script', 'Noto Serif', cursive;
-            font-size: clamp(3.2rem, 7vw, 5.2rem);
-            font-weight: 400;
-            line-height: 1;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55);
-            padding-bottom: 0.1em;
+            font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            margin-bottom: 2.6rem;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
         }
-        .gear-placeholder {
-            font-family: 'Noto Serif', serif;
-            font-style: italic;
-            font-size: 1.05rem;
-            line-height: 2;
-            color: rgba(255,255,255,0.75);
+        .gear-subtitle {
+            font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
+            font-size: 0.74rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            margin-top: 2.4rem;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+        }
+        .gear-subtitle:first-of-type { margin-top: 0; }
+
+        .gear-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .gear-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 1.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
+            font-size: 1.02rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            color: rgba(255,255,255,0.92);
             text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+        }
+        .gear-list li:last-child { border-bottom: none; }
+        .gear-list .idx {
+            flex: 0 0 2.2rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.5);
+            font-variant-numeric: tabular-nums;
+        }
+        .gear-list .name {
+            flex: 1;
+            line-height: 1.5;
         }
 
         @media (max-width: 900px) {
@@ -198,9 +233,11 @@
             width: min(680px, 90vw);
             background: rgba(18,18,18,0.92);
             border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 18px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.6);
             display: grid;
             grid-template-columns: 1fr 1px 1fr;
+            overflow: hidden;
             transform: translateY(14px);
             transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
             position: relative;
@@ -278,10 +315,21 @@
 
         <section class="gear-wrap">
             <p class="gear-eyebrow">My Gear</p>
-            <h1 class="gear-title">Coming soon.</h1>
-            <p class="gear-placeholder">
-                A full list of the cameras, lenses, and small tools I rely on — to be written.
-            </p>
+            <h1 class="gear-title">Cameras &amp; Lenses</h1>
+
+            <p class="gear-subtitle">Camera Body</p>
+            <ul class="gear-list">
+                <li><span class="idx">01</span><span class="name">Nikon D850 DSLR Camera</span></li>
+            </ul>
+
+            <p class="gear-subtitle">Lenses</p>
+            <ul class="gear-list">
+                <li><span class="idx">02</span><span class="name">AF-S NIKKOR 24–70mm F2.8G ED</span></li>
+                <li><span class="idx">03</span><span class="name">AF-S VR Micro-Nikkor 105mm f/2.8G IF-ED</span></li>
+                <li><span class="idx">04</span><span class="name">SIGMA 60–600mm F4.5–6.3 DG OS HSM | Sports</span></li>
+                <li><span class="idx">05</span><span class="name">SIGMA 50mm F1.4 DG HSM | Art</span></li>
+                <li><span class="idx">06</span><span class="name">Tamron SP 70–200mm F/2.8 Di VC USD G2 (Model A025)</span></li>
+            </ul>
         </section>
     </main>
 
