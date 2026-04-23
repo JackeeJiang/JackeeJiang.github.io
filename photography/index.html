@@ -292,7 +292,7 @@
             };
 
             grid.innerHTML = albums.map((a, i) => `
-                <a class="album" href="${esc(a.slug)}/" style="animation-delay:${Math.min(i * 80, 600)}ms">
+                <a class="album" href="${esc(a.drive_url)}" target="_blank" rel="noopener noreferrer" style="animation-delay:${Math.min(i * 80, 600)}ms">
                     <div class="album-cover">
                         <img src="${esc(a.cover)}" alt="${esc(a.title)}" loading="lazy">
                     </div>
