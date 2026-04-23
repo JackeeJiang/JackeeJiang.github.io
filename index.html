@@ -305,11 +305,13 @@
                 else if (e.deltaY > 0) go(current + 1);
             }, { passive: true });
 
-            // 任意键:仅在 Research / Photography 场景生效
-            window.addEventListener('keydown', () => {
+            // 任意键 / 鼠标点击:仅在 Research / Photography 场景生效
+            const enter = () => {
                 const url = TARGET[current];
                 if (url) window.location.href = url;
-            });
+            };
+            window.addEventListener('keydown', enter);
+            window.addEventListener('click', enter);
 
             // 触屏:竖向滑动同义于滚轮
             let touchStartY = null;
