@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography — Jiaqi Jiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
+            color: #ffffff;
+
+            /* 同首页同一张背景,保持视觉连续 */
+            background-image: url('../bg.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            overflow: hidden; /* 外层不滚,交给 .page 内部滚动 */
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center,
+                rgba(0,0,0,0.55) 0%,
+                rgba(0,0,0,0.35) 60%,
+                rgba(0,0,0,0.25) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 滚动容器:内部丝滑滚动,外层背景不动 */
+        .page {
+            position: relative;
+            z-index: 1;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            padding: 3rem 6% 5rem;
+
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.25) transparent;
+        }
+        .page::-webkit-scrollbar { width: 8px; }
+        .page::-webkit-scrollbar-track { background: transparent; }
+        .page::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.22);
+            border-radius: 4px;
+        }
+        .page::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+
+        /* 顶部:品牌字 + 导航 */
+        header.top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            max-width: 1400px;
+            margin: 0 auto 3.5rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            font-family: 'Pinyon Script', 'Noto Serif', cursive;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 400;
+            color: #ffffff;
+            text-decoration: none;
+            line-height: 1;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+            padding-bottom: 0.1em;
+        }
+
+        .brand .home-back {
+            font-family: 'Noto Serif', serif;
+            font-size: 0.75rem;
+            font-style: italic;
+            letter-spacing: 0.15em;
+            color: rgba(255,255,255,0.6);
+            display: block;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        .brand:hover .home-back { color: rgba(255,255,255,0.95); }
+
+        nav.top-nav {
+            display: flex;
+            gap: 2.2rem;
+            font-family: 'Noto Serif', 'Noto Serif SC', serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            align-items: center;
+        }
+        nav.top-nav a {
+            color: rgba(255, 255, 255, 0.88);
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 3px;
+            transition: color 0.3s ease;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+        }
+        nav.top-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        nav.top-nav a:hover { color: #ffffff; }
+        nav.top-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* 作品集网格:两列 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .album {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .album-cover {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.42);
+            transition:
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .album:hover .album-cover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.58);
+        }
+        .album:hover .album-cover img {
+            transform: scale(1.03);
+        }
+
+        .album-caption {
+            margin-top: 1rem;
+            font-family: 'Noto Serif', 'Noto Serif SC', serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.82);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+            line-height: 1.5;
+        }
+
+        .album-meta {
+            margin-top: 0.3rem;
+            font-family: 'Noto Serif', 'Noto Serif SC', serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.18em;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+
+        /* 首屏淡入 */
+        .album {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeUp 0.9s ease-out forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 空态/加载 */
+        .empty-state {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-style: italic;
+            padding: 4rem 0;
+            grid-column: 1 / -1;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            header.top {
+                margin-bottom: 2.5rem;
+            }
+            nav.top-nav { gap: 1.4rem; font-size: 0.82rem; }
+        }
+
+        @media (max-width: 700px) {
+            .page { padding: 2rem 1.2rem 3rem; }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 2.2rem;
+            }
+            body { background-attachment: scroll; }
+            header.top {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            nav.top-nav {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem 1.5rem;
+            }
+            .brand .home-back { display: inline-block; margin-bottom: 0.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="top">
+            <a class="brand" href="../">
+                <span class="home-back">← Back</span>
+                Photography
+            </a>
+            <nav class="top-nav">
+                <a href="about-me/">About Me</a>
+                <a href="contact-me-for-photo-service/">Contact me for Photo service</a>
+                <a href="my-gear/">My Gear</a>
+            </nav>
+        </header>
+
+        <section class="grid" id="album-grid">
+            <p class="empty-state">Loading albums…</p>
+        </section>
+    </main>
+
+    <script src="data/albums.js"></script>
+    <script>
+        (function () {
+            const grid = document.getElementById('album-grid');
+            const albums = window.ALBUMS;
+
+            if (!Array.isArray(albums) || !albums.length) {
+                grid.innerHTML = '<p class="empty-state">No albums yet.</p>';
+                return;
+            }
+
+            const esc = (s) => String(s).replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[c]));
+
+            const fmtDate = (iso) => {
+                const d = new Date(iso);
+                if (isNaN(d)) return iso;
+                return d.toLocaleDateString('en-US', {
+                    year: 'numeric', month: 'short', day: 'numeric'
+                });
+            };
+
+            grid.innerHTML = albums.map((a, i) => `
+                <a class="album" href="${esc(a.slug)}/" style="animation-delay:${Math.min(i * 80, 600)}ms">
+                    <div class="album-cover">
+                        <img src="${esc(a.cover)}" alt="${esc(a.title)}" loading="lazy">
+                    </div>
+                    <p class="album-caption">${esc(a.description || a.title)}</p>
+                    <p class="album-meta">${esc(fmtDate(a.date))}${a.location ? ' · ' + esc(a.location) : ''}</p>
+                </a>
+            `).join('');
+        })();
+    </script>
+</body>
+</html>
