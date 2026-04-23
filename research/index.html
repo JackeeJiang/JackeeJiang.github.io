@@ -48,11 +48,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 1.1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
         }
 
         .brand-link {
@@ -63,11 +58,15 @@
         }
 
         .site-nav nav {
+            /* 左端对齐头像左边缘(280px 侧栏居中 200px 头像 → 40px 偏移),
+               右端止于内容文字右边缘(= 容器右 padding 内侧) */
+            margin-left: 40px;
             display: flex;
-            gap: 1.8rem;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
             font-size: 0.95rem;
             flex-wrap: wrap;
-            align-items: center;
         }
 
         .site-nav nav a {
@@ -263,7 +262,12 @@
             }
             .contact li { margin-bottom: 0; }
             .site-nav-inner { padding: 1rem 1.5rem; }
-            .site-nav nav { gap: 1.2rem; font-size: 0.88rem; }
+            .site-nav nav {
+                margin-left: 0;
+                justify-content: center;
+                gap: 1.2rem;
+                font-size: 0.88rem;
+            }
         }
 
         @media (max-width: 600px) {
