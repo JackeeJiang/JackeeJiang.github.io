@@ -4,21 +4,21 @@
  */
 window.ALBUMS = [
   {
-    date: "2026-04-05",
-    title: "Kings Canyon Autumn",
-    location: "Central Australia",
-    slug: "05042026-kings-canyon-autumn",
-    cover: "albums/05042026-kings-canyon-autumn/show.jpg",
-    description: "Ochre walls under a quiet autumn sky.",
-    drive_url: "https://drive.google.com/drive/folders/placeholder-01"
+    date: "2026-04-18",
+    title: "UNSWFC Home Game",
+    location: "Village Green, UNSW",
+    slug: "20240418_UNSWFC_VillageGreen",
+    cover: "albums/20240418_UNSWFC_VillageGreen/show.jpg",
+    description: "A Victory at home!",
+    drive_url: "https://drive.google.com/drive/folders/1suxjeiUmGSgLJP-tW9fqdTsvatXDivMg?usp=sharing"
   },
   {
-    date: "2025-12-20",
-    title: "Sydney Harbour at Dusk",
-    location: "Sydney, Australia",
-    slug: "20122025-sydney-harbour-at-dusk",
-    cover: "albums/20122025-sydney-harbour-at-dusk/show.jpg",
-    description: "Golden hour drifting over the bridge.",
-    drive_url: "https://drive.google.com/drive/folders/placeholder-02"
+    date: "2026-04-11",
+    title: "UNSWFC Home Game",
+    location: "Village Green, UNSW",
+    slug: "20240411_UNSWFC_VillageGreen",
+    cover: "albums/20240411_UNSWFC_VillageGreen/show.jpg",
+    description: "A Victory at home!",
+    drive_url: "https://drive.google.com/drive/folders/1y54xyAducuTrsZM8pTG_XV-AkgsZ7bvE?usp=sharing"
   }
 ];
