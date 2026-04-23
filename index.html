@@ -6,7 +6,7 @@
     <title>Jiaqi Jiang</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,11 +22,8 @@
         body {
             font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
             color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
-            
+
             /* 背景照片 */
             background-image: url('bg.jpg');
             background-size: cover;
@@ -40,15 +37,32 @@
             content: '';
             position: fixed;
             inset: 0;
-            background: 
+            background:
                 radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.25) 100%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* 装饰短线 */
-        .line-top, .line-bottom {
+        /* === 场景框架:三层叠在同一个视口内,通过 opacity 切换 === */
+        .scene {
             position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .scene.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* === Home 场景(保持原样) === */
+        .line-top, .line-bottom {
+            position: absolute;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
@@ -56,7 +70,6 @@
             background: rgba(255, 255, 255, 0.85);
             opacity: 0;
             animation: lineGrow 1.2s ease-out 0.2s forwards;
-            z-index: 2;
         }
 
         .line-top { top: 15%; }
@@ -69,8 +82,6 @@
 
         .container {
             text-align: center;
-            position: relative;
-            z-index: 1;
             padding: 2rem;
             max-width: 95%;
         }
@@ -82,7 +93,6 @@
             letter-spacing: 0.01em;
             line-height: 1.2;
             color: #ffffff;
-            /* 文字阴影增强可读性 */
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
             opacity: 0;
             animation: fadeUp 1s ease-out 0.6s forwards;
@@ -142,14 +152,49 @@
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === Research / Photography 场景 === */
+        .scene-title {
+            font-size: clamp(4rem, 13vw, 10rem);
+            color: #ffffff;
+            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
+            line-height: 1;
+        }
+
+        .scene-research .scene-title {
+            font-family: 'Playfair Display', 'Noto Serif', serif;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .scene-photography .scene-title {
+            font-family: 'Playfair Display', 'Noto Serif', serif;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.005em;
+        }
+
+        .scene-hint {
+            position: absolute;
+            bottom: 12%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Noto Serif', 'Noto Serif SC', serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.18em;
+            color: rgba(255, 255, 255, 0.75);
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+            animation: hintPulse 2.6s ease-in-out infinite;
+        }
+
+        @keyframes hintPulse {
+            0%, 100% { opacity: 0.55; }
+            50%      { opacity: 0.95; }
         }
 
         /* 响应式 */
@@ -165,24 +210,99 @@
             .line-top { top: 10%; }
             .line-bottom { bottom: 10%; }
             body {
-                background-attachment: scroll; /* 移动端不用 fixed,性能更好 */
+                background-attachment: scroll;
+            }
+            .scene-title {
+                font-size: clamp(3rem, 15vw, 6rem);
+            }
+            .scene-hint {
+                font-size: 0.72rem;
+                letter-spacing: 0.15em;
+                bottom: 10%;
+                padding: 0 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="line-top"></div>
-    
-    <main class="container">
-        <h1 class="name">Jiaqi Jiang&nbsp;(Jackee Martinez)</h1>
-        
-        <div class="meta">
-            <a href="mailto:jjq1972556423@outlook.com">Contact Me</a>
-            <span class="divider">·</span>
-            <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering" target="_blank" rel="noopener noreferrer">UNSW School of Computer Science and Engineering</a>
+    <!-- Home(默认场景) -->
+    <section class="scene scene-home active" data-scene="0">
+        <div class="line-top"></div>
+        <div class="container">
+            <h1 class="name">Jiaqi Jiang&nbsp;(Jackee Martinez)</h1>
+            <div class="meta">
+                <a href="mailto:jjq1972556423@outlook.com">Contact Me</a>
+                <span class="divider">·</span>
+                <a href="https://www.unsw.edu.au/engineering/our-schools/computer-science-and-engineering" target="_blank" rel="noopener noreferrer">UNSW School of Computer Science and Engineering</a>
+            </div>
         </div>
-    </main>
+        <div class="line-bottom"></div>
+    </section>
 
-    <div class="line-bottom"></div>
+    <!-- Research(滚轮上滑) -->
+    <section class="scene scene-research" data-scene="-1">
+        <h2 class="scene-title">Research</h2>
+        <p class="scene-hint">Click any key to enter my research page</p>
+    </section>
+
+    <!-- Photography(滚轮下滑) -->
+    <section class="scene scene-photography" data-scene="1">
+        <h2 class="scene-title">Photography</h2>
+        <p class="scene-hint">Click any key to enter my portfolio page</p>
+    </section>
+
+    <script>
+        (function () {
+            const scenes = {
+                '-1': document.querySelector('.scene-research'),
+                '0':  document.querySelector('.scene-home'),
+                '1':  document.querySelector('.scene-photography'),
+            };
+            const TARGET = {
+                '-1': './research/',
+                '1':  './photography/',
+            };
+            let current = 0;
+            let locked = false;
+            const LOCK_MS = 850;
+
+            function go(to) {
+                if (to === current || locked) return;
+                if (to < -1 || to > 1) return;
+                locked = true;
+                scenes[current].classList.remove('active');
+                scenes[to].classList.add('active');
+                current = to;
+                setTimeout(() => { locked = false; }, LOCK_MS);
+            }
+
+            // 滚轮:上滑 → Research(-1);下滑 → Photography(1)
+            window.addEventListener('wheel', (e) => {
+                if (locked) return;
+                if (e.deltaY < 0) go(current - 1);
+                else if (e.deltaY > 0) go(current + 1);
+            }, { passive: true });
+
+            // 任意键:仅在 Research / Photography 场景生效
+            window.addEventListener('keydown', () => {
+                const url = TARGET[current];
+                if (url) window.location.href = url;
+            });
+
+            // 触屏:竖向滑动同义于滚轮
+            let touchStartY = null;
+            window.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+            window.addEventListener('touchend', (e) => {
+                if (touchStartY === null) return;
+                const dy = touchStartY - e.changedTouches[0].clientY;
+                touchStartY = null;
+                if (Math.abs(dy) < 40) return;
+                if (dy > 0) go(current + 1);  // 手指上滑 ≈ 滚轮下滑
+                else        go(current - 1);
+            }, { passive: true });
+        })();
+    </script>
 </body>
 </html>
