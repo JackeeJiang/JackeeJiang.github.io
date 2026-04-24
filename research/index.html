@@ -131,20 +131,28 @@
 
         .role a {
             display: inline;
-            color: inherit;
-            background-image: linear-gradient(currentColor, currentColor);
-            background-position: 0 100%;
+            background-image: linear-gradient(
+                100deg,
+                var(--text-soft) 0%,
+                var(--text-soft) 44%,
+                #0a0a0a 50%,
+                var(--text-soft) 56%,
+                var(--text-soft) 100%
+            );
+            background-size: 300% 100%;
+            background-position: 100% 0;
             background-repeat: no-repeat;
-            background-size: 0 1px;
-            padding-bottom: 2px;
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
-            transition: background-size 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        color 0.25s ease;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
         .role a:hover {
-            color: var(--text);
-            background-size: 100% 1px;
+            animation: role-shine 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes role-shine {
+            0%   { background-position: 100% 0; }
+            100% { background-position: 0% 0; }
         }
 
         .contact {
