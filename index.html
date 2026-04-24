@@ -208,9 +208,23 @@
             color: rgba(255, 255, 255, 0.6);
             text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
             animation: hintPulse 2.6s ease-in-out infinite;
+            cursor: pointer;
+            padding: 0.8rem 1rem;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            transition: color 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
         }
+        .home-hint:hover { color: rgba(255, 255, 255, 0.95); }
         .home-hint-top    { top: 6%; }
         .home-hint-bottom { bottom: 6%; }
+
+        .hint-mobile { display: none; }
+        @media (hover: none) and (pointer: coarse) {
+            .hint-desktop { display: none; }
+            .hint-mobile  { display: inline; }
+        }
 
         @keyframes hintPulse {
             0%, 100% { opacity: 0.55; }
@@ -247,7 +261,10 @@
 <body>
     <!-- Home(默认场景) -->
     <section class="scene scene-home active" data-scene="0">
-        <p class="home-hint home-hint-top">Scroll Up for Research Page</p>
+        <button type="button" class="home-hint home-hint-top" data-goto="-1">
+            <span class="hint-desktop">Scroll Up for Research Page</span>
+            <span class="hint-mobile">Tap for Research Page</span>
+        </button>
         <div class="line-top"></div>
         <div class="container">
             <h1 class="name">Jiaqi Jiang&nbsp;(Jackee Martinez)</h1>
@@ -256,7 +273,10 @@
             </div>
         </div>
         <div class="line-bottom"></div>
-        <p class="home-hint home-hint-bottom">Scroll Down for Photography Page</p>
+        <button type="button" class="home-hint home-hint-bottom" data-goto="1">
+            <span class="hint-desktop">Scroll Down for Photography Page</span>
+            <span class="hint-mobile">Tap for Photography Page</span>
+        </button>
     </section>
 
     <!-- Research(滚轮上滑) -->
@@ -310,6 +330,16 @@
             };
             window.addEventListener('keydown', enter);
             window.addEventListener('click', enter);
+
+            // Home 场景上下两个提示按钮:点击直接切到对应场景并跳转
+            document.querySelectorAll('.home-hint').forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const to = parseInt(btn.dataset.goto, 10);
+                    const url = TARGET[to];
+                    if (url) window.location.href = url;
+                });
+            });
 
             // 触屏:竖向滑动同义于滚轮
             let touchStartY = null;
