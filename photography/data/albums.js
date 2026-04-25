@@ -4,6 +4,15 @@
  */
 window.ALBUMS = [
   {
+    date: "2026-04-25",
+    title: "Landing Under the Golden Sunshine",
+    location: "Sydney Airport, Sydney",
+    slug: "20260425_YSSY_Beach",
+    cover: "albums/20260425_YSSY_Beach/show.jpg",
+    description: "Qatar Airway OW livery A35k landing at 16L SYD",
+    drive_url: "https://drive.google.com/drive/folders/1pHIk-hH65lH-TS8qAEHrX-ZxC7OveeqK?usp=sharing"
+  },
+  {
     date: "2026-04-18",
     title: "UNSWFC Home Game",
     location: "Village Green, UNSW",
