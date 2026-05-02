@@ -3,6 +3,16 @@
  * 并在 photography/albums/<slug>/ 下放 show.jpg。
  */
 window.ALBUMS = [
+  //
+  {
+    date: "2026-05-02",
+    title: "UNSWFC 2 - 2 BlacktownCity",
+    location: "Village Green, UNSW",
+    slug: "20260502_UNSWFC_VillageGreen",
+    cover: "albums/20260502_UNSWFC_VillageGreen/show.jpg",
+    description: "Our hero Jyden Harb ensures our unbeaten run at home!",
+    drive_url: "https://drive.google.com/drive/folders/1ziXluLpMjYONqjq-VauEpoBpI-C6kTrq?usp=sharing"
+  },
   {
     date: "2026-04-25",
     title: "Landing Under the Golden Sunshine",
