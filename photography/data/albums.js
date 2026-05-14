@@ -5,6 +5,24 @@
 window.ALBUMS = [
   //
   {
+    date: "2026-05-10",
+    title: "Girls Football",
+    location: "Mason Park, Homebush",
+    slug: "20260510_Homebush",
+    cover: "albums/20260510_Homebush/show.jpg",
+    description: "A draw at a sunny noon",
+    drive_url: "https://drive.google.com/drive/folders/1kFzCULwgs-m1dJz9wY24LAYGaDf-mdW5?usp=drive_link"
+  },
+  {
+    date: "2026-05-09",
+    title: "UNSWFC 1 - 0 Macarthur Rams",
+    location: "Village Green, UNSW",
+    slug: "20260509_UNSWFC_VillageGreen_WomenFG",
+    cover: "albums/20260509_UNSWFC_VillageGreen_WomenFG/show.jpg",
+    description: "Our grils are always the best!",
+    drive_url: "https://drive.google.com/drive/folders/1UJLcnWjdL2ZJnBdh4S4mQ-rSmsM_oVSp?usp=drive_link"
+  },
+  {
     date: "2026-05-02",
     title: "UNSWFC 2 - 2 BlacktownCity",
     location: "Village Green, UNSW",
