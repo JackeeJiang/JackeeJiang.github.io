@@ -5,6 +5,15 @@
 window.ALBUMS = [
   //
   {
+    date: "2026-05-16",
+    title: "UNSWFC 2 - 0 Rockadale",
+    location: "Village Green, UNSW",
+    slug: "20260516_UNSWFC_VillageGreen",
+    cover: "albums/20260516_UNSWFC_VillageGreen/show.jpg",
+    description: "We are always winning!",
+    drive_url: "https://drive.google.com/drive/folders/193X3Kwbj3TWcvcmXoS_jDWR4p3yvdGD7?usp=drive_link"
+  },
+  {
     date: "2026-05-10",
     title: "Girls Football",
     location: "Mason Park, Homebush",
