@@ -6,7 +6,7 @@
     <title>My Gear — Photography — Jiaqi Jiang</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400&family=Oswald:wght@700&family=Pinyon+Script&family=Saira:wght@800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; }
@@ -126,7 +126,7 @@
 
         .gear-wrap {
             max-width: 760px;
-            margin: 0 auto;
+            margin: 0 0 0 50%;
         }
         .gear-eyebrow {
             font-family: 'Noto Serif', 'Noto Serif SC', "SimSun", "宋体", serif;
@@ -190,6 +190,9 @@
             flex: 1;
             line-height: 1.5;
         }
+        .brand-nikon  { font-family: 'Jost', sans-serif;   font-weight: 700; letter-spacing: 0.02em; }
+        .brand-sigma  { font-family: 'Saira', sans-serif;  font-weight: 800; letter-spacing: 0.02em; }
+        .brand-tamron { font-family: 'Oswald', sans-serif; font-weight: 700; letter-spacing: 0.04em; }
 
         @media (max-width: 900px) {
             header.top { margin-bottom: 3rem; }
@@ -319,17 +322,17 @@
 
             <p class="gear-subtitle">Camera Body</p>
             <ul class="gear-list">
-                <li><span class="idx">01</span><span class="name">Nikon D850 DSLR Camera</span></li>
-                <li><span class="idx">02</span><span class="name">Nikon D4s DSLR Camera</span></li>
+                <li><span class="idx">01</span><span class="name"><span class="brand-nikon">Nikon</span> D850 DSLR Camera</span></li>
+                <li><span class="idx">02</span><span class="name"><span class="brand-nikon">Nikon</span> D4s DSLR Camera</span></li>
             </ul>
 
             <p class="gear-subtitle">Lenses</p>
             <ul class="gear-list">
-                <li><span class="idx">03</span><span class="name">AF-S NIKKOR 24–70mm F2.8G ED</span></li>
-                <li><span class="idx">04</span><span class="name">AF-S VR Micro-Nikkor 105mm f/2.8G IF-ED</span></li>
-                <li><span class="idx">05</span><span class="name">SIGMA 60–600mm F4.5–6.3 DG OS HSM | Sports</span></li>
-                <li><span class="idx">06</span><span class="name">SIGMA 50mm F1.4 DG HSM | Art</span></li>
-                <li><span class="idx">07</span><span class="name">Tamron SP 70–200mm F/2.8 Di VC USD G2 (Model A025)</span></li>
+                <li><span class="idx">03</span><span class="name">AF-S <span class="brand-nikon">NIKKOR</span> 24–70mm F2.8G ED</span></li>
+                <li><span class="idx">04</span><span class="name">AF-S VR Micro-<span class="brand-nikon">Nikkor</span> 105mm f/2.8G IF-ED</span></li>
+                <li><span class="idx">05</span><span class="name"><span class="brand-sigma">SIGMA</span> 60–600mm F4.5–6.3 DG OS HSM | Sports</span></li>
+                <li><span class="idx">06</span><span class="name"><span class="brand-sigma">SIGMA</span> 50mm F1.4 DG HSM | Art</span></li>
+                <li><span class="idx">07</span><span class="name"><span class="brand-tamron">Tamron</span> SP 70–200mm F/2.8 Di VC USD G2 (Model A025)</span></li>
             </ul>
         </section>
     </main>
