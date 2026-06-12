@@ -9,7 +9,7 @@ window.ALBUMS = [
     title: "Attending a tour with UNSWAVSOC through the SYD airfeild",
     location: "Sydney Airport, Sydney",
     slug: "20260609_UNSWAVSOC_AirfeildTour",
-    cover: "20260609_UNSWAVSOC_AirfeildTour/show.jpg",
+    cover: "albums/20260609_UNSWAVSOC_AirfeildTour/show.jpg",
     description: "My very first time getting on airfeild of such a big international airport",
     drive_url: "jackeejiang.cc"
   },
@@ -18,7 +18,7 @@ window.ALBUMS = [
     title: "Biritish Royal Air Force A400M(ZM404) leaving SYD for CBR",
     location: "Sydney Airport, Sydney",
     slug: "20260608_YSSY_RAFA400m",
-    cover: "20260608_YSSY_RAFA400m/show.jpg",
+    cover: "albums/20260608_YSSY_RAFA400m/show.jpg",
     description: "RAF A400M flying over the moon",
     drive_url: "jackeejiang.cc"
   },
