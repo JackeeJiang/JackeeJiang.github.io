@@ -409,12 +409,14 @@
         /* === Gear background switcher === */
         (function () {
             const items = document.querySelectorAll('.gear-list li[data-bg]');
-            const layers = [
-                document.getElementById('bg-a'),
-                document.getElementById('bg-b')
-            ];
-            let activeLayer = -1;   // -1 = neither visible (default bgmygear showing)
+            const layerA = document.getElementById('bg-a');
+            const layerB = document.getElementById('bg-b');
+            const parent = layerA.parentNode;
+            // layers[0] = currently bottom / hidden (ready to become the next incoming layer)
+            // layers[1] = currently top / opaque (what's visible right now, if anything)
+            let layers = [layerA, layerB];
             let activeItem  = null;
+            let hideTimeout = null;
 
             // Preload all device images so first click is instant
             items.forEach(li => {
@@ -422,26 +424,41 @@
                 if (src) { const img = new Image(); img.src = src; }
             });
 
+            function crossfadeTo(src) {
+                clearTimeout(hideTimeout);
+                const outgoing = layers[1];
+                const incoming = layers[0];
+                incoming.style.backgroundImage = `url('${src}')`;
+                parent.appendChild(incoming); // move above `outgoing` in paint order
+                void incoming.offsetWidth;    // force reflow so the transition triggers
+                incoming.classList.add('visible');
+                layers = [outgoing, incoming];
+                // Only hide the outgoing layer once it's fully covered by the incoming one
+                hideTimeout = setTimeout(() => {
+                    outgoing.classList.remove('visible');
+                }, 1350);
+            }
+
+            function fadeOutAll() {
+                clearTimeout(hideTimeout);
+                layers[1].classList.remove('visible');
+                layers[0].classList.remove('visible');
+            }
+
             items.forEach(li => {
                 li.addEventListener('click', () => {
                     // Toggle off: same item clicked again → fade back to default
                     if (activeItem === li) {
-                        if (activeLayer >= 0) layers[activeLayer].classList.remove('visible');
+                        fadeOutAll();
                         li.classList.remove('active');
-                        activeItem  = null;
-                        activeLayer = -1;
+                        activeItem = null;
                         return;
                     }
-                    // Switch to new image (crossfade)
-                    const nextIdx = activeLayer === 0 ? 1 : 0;
-                    const nextLay = layers[nextIdx];
-                    nextLay.style.backgroundImage = `url('${li.getAttribute('data-bg')}')`;
-                    nextLay.classList.add('visible');
-                    if (activeLayer >= 0) layers[activeLayer].classList.remove('visible');
+                    // Switch to new image (crossfade directly, no default background flash)
+                    crossfadeTo(li.getAttribute('data-bg'));
                     if (activeItem) activeItem.classList.remove('active');
                     li.classList.add('active');
-                    activeItem  = li;
-                    activeLayer = nextIdx;
+                    activeItem = li;
                 });
             });
         })();
